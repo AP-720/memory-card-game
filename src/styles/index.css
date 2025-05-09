@@ -1,0 +1,16 @@
+@import "reset.css";
+
+:root {
+	/* colours */
+	--color-background: #f4f3f2;
+
+	/* Typography */
+	--color-text-primary: #333333;
+}
+
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--color-text-primary);
+	background-color: var(--color-background);
+}
