@@ -1,0 +1,13 @@
+header {
+	display: flex;
+	flex-direction: column;
+}
+
+h1 {
+	font-size: var(--heading-1-size);
+	text-decoration: underline;
+}
+
+.headerText {
+	margin-top: var(--spacing-m);
+}
