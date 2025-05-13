@@ -1,0 +1,21 @@
+.imageContainer {
+	display: grid;
+	gap: var(--spacing-l);
+	grid-template-columns: repeat(4, 1fr);
+    margin-top: var(--spacing-l);
+}
+
+.gameButton {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: var(--spacing-l);
+    height: 225px;
+    width: 225px;
+}
+
+.gameImage {
+    max-height: 200px;
+    max-width: 200px;
+    object-fit: contain; 
+}

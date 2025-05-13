@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
+import ImageContainer from "../ImageContainer/ImageContainer";
 import styles from "./App.module.css";
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
 				} else {
 					setImageData(
 						data.data.map((artWork) => {
-							({
+							return ({
 								id: artWork.id,
 								title: artWork.title,
 								artist: artWork.artist_title,
@@ -40,10 +41,12 @@ function App() {
 		fetchData();
 	}, []);
 
+
 	return (
 		<div className={styles.container}>
 			<Header heading={"Memory Card Game"} />
 			<ScoreBoard currentScore={currentScore} highScore={highScore} />
+			<ImageContainer imageData={imageData} />
 		</div>
 	);
 }

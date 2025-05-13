@@ -3,6 +3,7 @@
 :root {
 	/* colours */
 	--color-background: #f4f3f2;
+	--color-select: HSL(145.33,63.38%,41.76%);
 
 	/* Typography */
 	--color-text-primary: #333333;
@@ -31,4 +32,13 @@ body {
 
 p {
 	margin: 0;
+}
+
+button {
+	border: solid 1px var(--color-text-primary);
+	border-radius: var(--spacing-l);
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+button:hover {
+	border: solid 3px var(--color-select);
 }
