@@ -5,7 +5,7 @@ export default function Header({ heading }) {
 		<header>
 			<h1>{heading}</h1>
 			<p className={styles.headerText}>
-				Pick a artwork, don’t pick the same one twice, or it's game over!
+				Pick an artwork, don’t pick the same one twice, or it's game over!
 			</p>
 		</header>
 	);

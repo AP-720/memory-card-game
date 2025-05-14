@@ -1,9 +1,14 @@
 .container {
-	min-height: 100vh;
-	max-width: 1200px;
-	margin-inline: auto;
-	border: 1px solid red;
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	margin-inline: auto;
+	max-width: 1200px;
+	min-height: 100vh;
+}
+
+.loading {
+	font-size: var(--heading-1-size);
+	margin-top: 15rem;
+	font-weight: 900;
 }

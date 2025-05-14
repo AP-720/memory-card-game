@@ -10,6 +10,7 @@ function App() {
 	const [highScore, setHighScore] = useState(0);
 	const [imageData, setImageData] = useState([]);
 	const [clickedImages, setClickedImages] = useState(new Set([]));
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -34,6 +35,7 @@ function App() {
 							};
 						})
 					);
+					setLoading(false);
 				}
 			} catch (error) {
 				console.log(error);
@@ -67,7 +69,11 @@ function App() {
 		<div className={styles.container}>
 			<Header heading={"Memory Card Game"} />
 			<ScoreBoard currentScore={currentScore} highScore={highScore} />
-			<ImageContainer imageData={imageData} onSelectImage={onSelectImage} />
+			{loading ? (
+				<p className={styles.loading}>Loading...</p>
+			) : (
+				<ImageContainer imageData={imageData} onSelectImage={onSelectImage} />
+			)}
 		</div>
 	);
 }
