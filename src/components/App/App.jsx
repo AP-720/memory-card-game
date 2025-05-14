@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import ScoreBoard from "../ScoreBoard/ScoreBoard";
 import ImageContainer from "../ImageContainer/ImageContainer";
+import { shuffleArray } from "../../utilities";
 import styles from "./App.module.css";
 
 function App() {
@@ -24,12 +25,12 @@ function App() {
 				} else {
 					setImageData(
 						data.data.map((artWork) => {
-							return ({
+							return {
 								id: artWork.id,
 								title: artWork.title,
 								artist: artWork.artist_title,
 								imageUrl: `https://www.artic.edu/iiif/2/${artWork.image_id}/full/843,/0/default.jpg`,
-							});
+							};
 						})
 					);
 				}
@@ -41,12 +42,24 @@ function App() {
 		fetchData();
 	}, []);
 
+	const onSelectImage = () => {
+		// Need to calculate the new value and then use for the comparison and setting the new value, otherwise was getting stale state when using the currentScore.
+		const newScore = currentScore + 1;
+
+		setCurrentScore(newScore);
+
+		if (newScore > highScore) {
+			setHighScore(newScore);
+		}
+
+		shuffleArray(imageData);
+	};
 
 	return (
 		<div className={styles.container}>
 			<Header heading={"Memory Card Game"} />
 			<ScoreBoard currentScore={currentScore} highScore={highScore} />
-			<ImageContainer imageData={imageData} />
+			<ImageContainer imageData={imageData} onSelectImage={onSelectImage} />
 		</div>
 	);
 }
