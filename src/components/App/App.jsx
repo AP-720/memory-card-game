@@ -9,11 +9,12 @@ function App() {
 	const [currentScore, setCurrentScore] = useState(0);
 	const [highScore, setHighScore] = useState(0);
 	const [imageData, setImageData] = useState([]);
+	const [clickedImages, setClickedImages] = useState(new Set([]));
 
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				// fetches 12 results, using a empty query returns a random selection, makes sure its public domain and has the field id, title and image_id
+				// fetches 12 results, makes sure its public domain and has the field id, title and image_id
 				const response = await fetch(
 					"https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=12&fields=id,title,artist_title,image_id"
 				);
@@ -42,16 +43,23 @@ function App() {
 		fetchData();
 	}, []);
 
-	const onSelectImage = () => {
-		// Need to calculate the new value and then use for the comparison and setting the new value, otherwise was getting stale state when using the currentScore.
-		const newScore = currentScore + 1;
+	const onSelectImage = (id) => {
+		if (clickedImages.has(id)) {
+			setCurrentScore(0);
+			setClickedImages(new Set([]));
+		} else {
+			// Need to make sure to create a new set and copy the previous data to it, then add the new id.
+			setClickedImages(new Set([...clickedImages]).add(id));
 
-		setCurrentScore(newScore);
+			// Need to calculate the new value and then use for the comparison and setting the new value, otherwise was getting stale state when using the currentScore.
+			const newScore = currentScore + 1;
 
-		if (newScore > highScore) {
-			setHighScore(newScore);
+			setCurrentScore(newScore);
+
+			if (newScore > highScore) {
+				setHighScore(newScore);
+			}
 		}
-
 		shuffleArray(imageData);
 	};
 
